@@ -1,0 +1,29 @@
+<nodeDefs>
+    <!-- NODE DEF from 5.0 document http://wiki.universal-devices.com/index.php?title=V50_MAIN -->
+    <!-- controller, this must mach the id in your Controller class-->
+    <nodeDef id="ewelink" nls="ewelinknls">
+        <editors/>
+        <sts>
+            <st id="ST" editor="bool"/>
+        </sts>
+        <cmds>
+            <accepts>
+                <cmd id="DISCOVER"/>
+            </accepts>
+        </cmds>
+    </nodeDef>
+    <nodeDef id="ewelinknode" nls="ewelinknodenls">
+        <editors/>
+        <sts>
+            <st id="GV1" editor="I_STATUS"/>
+            <st id="WATERT" editor="I_TEMP_F"/>
+        </sts>
+        <cmds>
+            <accepts>
+                <cmd id="DON"/>
+                <cmd id="DOFF"/>
+                <cmd id="QUERY"/>
+            </accepts>
+        </cmds>
+    </nodeDef>
+</nodeDefs>

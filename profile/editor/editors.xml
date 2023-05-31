@@ -1,0 +1,12 @@
+<editors>
+    <!-- Boolean -->
+    <editor id="bool">
+        <range uom="2" subset="0,1"/>
+    </editor>
+    <editor id="I_TEMP_F">
+        <range uom="17" min="34" max="99" step="1" prec="0"/>
+    </editor>
+    <editor id="I_STATE">
+        <range uom="78" subset="0,100,101"/>
+    </editor>
+</editors>

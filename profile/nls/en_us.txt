@@ -1,0 +1,14 @@
+# controller
+ND-ewelink-NAME = eWeLink NodeServer Controller
+ND-ewelink-ICON = GenericCtl
+CMD-ewelinknls-DISCOVER-NAME = Discover
+ST-ewelinknls-ST-NAME = eWeLink NodeServer Running
+
+# ewelinknodetype
+ND-ewelinknode-NAME = eWeLink Node
+ND-ewelinknode-ICON = TempSensor
+ST-ewelinknodenls-GV1-NAME = Status
+ST-ewelinknodenls-WATERT-NAME = Water Temperature
+CMD-ewelinknodenls-QUERY-NAME = Query
+CMD-ewelinknodenls-DON-NAME = ON
+CMD-ewelinknodenls-DOFF-NAME = OFF
