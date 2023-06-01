@@ -15,7 +15,7 @@
     <nodeDef id="ewelinknode" nls="ewelinknodenls">
         <editors/>
         <sts>
-            <st id="GV1" editor="I_STATUS"/>
+            <st id="GV1" editor="I_STATE"/>
             <st id="WATERT" editor="I_TEMP_F"/>
         </sts>
         <cmds>
