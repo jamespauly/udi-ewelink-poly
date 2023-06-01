@@ -10,5 +10,5 @@ ND-ewelinknode-ICON = TempSensor
 ST-ewelinknodenls-GV1-NAME = Status
 ST-ewelinknodenls-WATERT-NAME = Water Temperature
 CMD-ewelinknodenls-QUERY-NAME = Query
-CMD-ewelinknodenls-DON-NAME = ON
-CMD-ewelinknodenls-DOFF-NAME = OFF
+CMD-ewelinknodenls-DON-NAME = On
+CMD-ewelinknodenls-DOFF-NAME = Off

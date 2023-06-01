@@ -33,6 +33,7 @@ class EWeLinkNode(udi_interface.Node):
                 self.setDriver('GV1', 101, True)
         except Exception as ex:
             LOGGER.exception("Could not refresh ewelink sensor %s because %s", self.device_id, ex)
+            self.setDriver('GV1', 101, True)
 
     def cmd_don(self, cmd):
         self.ewelink.login()
