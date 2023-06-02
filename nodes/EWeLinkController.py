@@ -113,10 +113,11 @@ class EWeLinkController(udi_interface.Node):
             LOGGER.debug('Listing Nodes: ' + node)
 
         for device in devices:
-            if self.poly.getNode('n' + device['itemData']['deviceid'][:6]) is None:
+            address_id = 'n' + device['itemData']['deviceid'][:6]
+            if self.poly.getNode(address_id) is None:
                 LOGGER.info("Adding Node {}".format(device['itemData']['deviceid']))
                 self.poly.addNode(
-                    EWeLinkNode(self.poly, self.address, 'n' + device['itemData']['deviceid'][:6], device['itemData']['name'],
+                    EWeLinkNode(self.poly, self.address, address_id, device['itemData']['name'],
                                 device['itemData']['deviceid'], ewelink=self.ewelink))
             else:
                 ewelink_node = self.poly.getNode(device['itemData']['deviceid'])
