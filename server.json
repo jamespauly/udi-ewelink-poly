@@ -9,7 +9,7 @@
   "install_cloud": "install_cloud.sh",
   "description": "eWeLink: A Node Server for Controlling eWeLink Devices",
   "notice": "",
-  "shortPoll": "60",
+  "shortPoll": "300",
   "longPoll": "600",
   "logLevel": "DEBUG",
   "devMode": true,
