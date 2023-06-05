@@ -55,8 +55,8 @@ class EWeLinkController(udi_interface.Node):
         self.region = self.Parameters['region']
         self.app_id = self.Parameters['app_id']
         self.app_secret = self.Parameters['app_secret']
-        self.rssi_perfect = int(self.Parameters['rssi_perfect'])
-        self.rssi_worst = int(self.Parameters['rssi_worst'])
+        self.rssi_perfect = self.Parameters['rssi_perfect']
+        self.rssi_worst = self.Parameters['rssi_worst']
 
         LOGGER.debug(self.user)
         LOGGER.debug(self.password)
