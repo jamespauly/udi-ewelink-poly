@@ -22,3 +22,16 @@ class Utilities:
             return int(round((fahrenheit - 32) * 5 / 9))
         else:
             return round((fahrenheit - 32) * 5 / 9, 1)
+
+    def dbm_to_percent(current, perfect=-20, worst=-85):
+        nominal = perfect - worst
+        percent = (100 * nominal * nominal - (perfect - current) * (15 * nominal + 62 * (perfect - current))) \
+                  / (nominal * nominal)  # ipw2200 quqdradic formula
+                                         # https://github.com/torvalds/linux/blob/9ff9b0d392ea08090cd1780fb196f36dbb586529/drivers/net/wireless/intel/ipw2x00/ipw2200.c#L4321
+
+        if percent > 100:
+            percent = 100
+        elif percent < 1:
+            percent = 0
+
+        return percent

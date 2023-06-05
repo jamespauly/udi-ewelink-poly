@@ -5,11 +5,13 @@ from utils import Utilities
 LOGGER = udi_interface.LOGGER
 
 class EWeLinkNode(udi_interface.Node):
-    def __init__(self, polyglot, primary, address, name, device_id, ewelink):
+    def __init__(self, polyglot, primary, address, name, device_id, ewelink, rssi_perfect, rssi_worst):
         super(EWeLinkNode, self).__init__(polyglot, primary, address, name)
         self.address = address
         self.ewelink = ewelink
         self.device_id = device_id
+        self.rssi_perfect = rssi_perfect
+        self.rssi_worst = rssi_worst
 
         self.poly.subscribe(self.poly.START, self.start, address)
         self.poly.subscribe(self.poly.POLL, self.poll)
@@ -31,6 +33,9 @@ class EWeLinkNode(udi_interface.Node):
                 self.setDriver('GV1', 100, True)
             else:
                 self.setDriver('GV1', 101, True)
+
+            rssi_percent = Utilities.dbm_to_percent(self.device['rssi'], self.rssi_perfect, self.rssi_worst)
+            self.setDriver('RFSS', rssi_percent, True)
         except Exception as ex:
             LOGGER.exception("Could not refresh ewelink sensor %s because %s", self.device_id, ex)
             self.setDriver('GV1', 101, True)
@@ -59,7 +64,8 @@ class EWeLinkNode(udi_interface.Node):
 
     drivers = [
         {'driver': 'GV1', 'value': 0, 'uom': '78'},  # Status
-        {'driver': 'WATERT', 'value': 0, 'uom': '17'}  # Water Temp
+        {'driver': 'WATERT', 'value': 0, 'uom': '17'},  # Water Temp
+        {'driver': 'RFSS', 'value': 0, 'uom': '51'} # RF Signal Percentage
     ]
 
     commands = {

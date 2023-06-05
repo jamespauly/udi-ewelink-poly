@@ -17,6 +17,7 @@
         <sts>
             <st id="GV1" editor="I_STATE"/>
             <st id="WATERT" editor="I_TEMP_F"/>
+            <st id="RFSS" editor="I_RF"/>
         </sts>
         <cmds>
             <accepts>

@@ -55,12 +55,26 @@ class EWeLinkController(udi_interface.Node):
         self.region = self.Parameters['region']
         self.app_id = self.Parameters['app_id']
         self.app_secret = self.Parameters['app_secret']
+        self.rssi_perfect = int(self.Parameters['rssi_perfect'])
+        self.rssi_worst = int(self.Parameters['rssi_worst'])
 
         LOGGER.debug(self.user)
         LOGGER.debug(self.password)
         LOGGER.debug(self.region)
         LOGGER.debug(self.app_id)
         LOGGER.debug(self.app_secret)
+
+        if self.rssi_perfect is not None:
+            pass
+        else:
+            LOGGER.error('rssi_perfect is Blank setting to -20')
+            self.rssi_perfect = -20
+
+        if self.rssi_worst is not None:
+            pass
+        else:
+            LOGGER.error('rssi_worst is Blank setting to -85')
+            self.rssi_worst = -85
 
         if self.region is not None and len(self.region) > 0:
             regionValid = True
@@ -119,7 +133,7 @@ class EWeLinkController(udi_interface.Node):
                 LOGGER.info("Adding Node {}".format(device_id))
                 self.poly.addNode(
                     EWeLinkNode(self.poly, self.address, address_id, device['itemData']['name'],
-                                device_id, ewelink=self.ewelink))
+                                device_id, ewelink=self.ewelink, self.rssi_perfect, self.rssi_worst))
             else:
                 ewelink_node = self.poly.getNode(address_id)
                 ewelink_node.query()

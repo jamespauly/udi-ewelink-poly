@@ -9,6 +9,7 @@ ND-ewelinknode-NAME = eWeLink Node
 ND-ewelinknode-ICON = TempSensor
 ST-ewelinknodenls-GV1-NAME = Status
 ST-ewelinknodenls-WATERT-NAME = Water Temperature
+ST-ewelinknodenls-RFSS-NAME = WiFi Signal Strength
 CMD-ewelinknodenls-QUERY-NAME = Query
 CMD-ewelinknodenls-DON-NAME = On
 CMD-ewelinknodenls-DOFF-NAME = Off
