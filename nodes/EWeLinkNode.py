@@ -35,7 +35,7 @@ class EWeLinkNode(udi_interface.Node):
                 self.setDriver('GV1', 101, True)
 
             rssi_percent = Utilities.dbm_to_percent(self.device['rssi'], self.rssi_perfect, self.rssi_worst)
-            self.setDriver('RFSS', rssi_percent, True)
+            self.setDriver('RFSS', int(rssi_percent), True)
         except Exception as ex:
             LOGGER.exception("Could not refresh ewelink sensor %s because %s", self.device_id, ex)
             self.setDriver('GV1', 101, True)
