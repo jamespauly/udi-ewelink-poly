@@ -133,7 +133,7 @@ class EWeLinkController(udi_interface.Node):
                 LOGGER.info("Adding Node {}".format(device_id))
                 self.poly.addNode(
                     EWeLinkNode(self.poly, self.address, address_id, device['itemData']['name'],
-                                device_id, ewelink=self.ewelink, self.rssi_perfect, self.rssi_worst))
+                                device_id, self.ewelink, self.rssi_perfect, self.rssi_worst))
             else:
                 ewelink_node = self.poly.getNode(address_id)
                 ewelink_node.query()
