@@ -24,9 +24,9 @@ class EWeLinkNode(udi_interface.Node):
                 self.setDriver('GV1', 101, True)
                 LOGGER.exception("Could not communicate with sensor %s", self.device_id)
                 return
-            LOGGER.info('Water Temp: ' + str(Utilities.celsius_to_fahrenheit(self.device['currentTemperature'])))
+            LOGGER.debug('Water Temp: ' + str(Utilities.celsius_to_fahrenheit(self.device['currentTemperature'])))
             self.setDriver('WATERT', Utilities.celsius_to_fahrenheit(self.device['currentTemperature']), True)
-            LOGGER.info('Device State: ' + self.device['switch'])
+            LOGGER.debug('Device State: ' + self.device['switch'])
             if 'off' in self.device['switch']:
                 self.setDriver('GV1', 0, True)
             elif 'on' in self.device['switch']:
@@ -35,6 +35,8 @@ class EWeLinkNode(udi_interface.Node):
                 self.setDriver('GV1', 101, True)
 
             rssi_percent = Utilities.dbm_to_percent(self.device['rssi'], self.rssi_perfect, self.rssi_worst)
+            LOGGER.debug('Device rssi value: ' + str(self.device['rssi']))
+            LOGGER.debug('Device rssi percent: ' + str(int(rssi_percent)))
             self.setDriver('RFSS', int(rssi_percent), True)
         except Exception as ex:
             LOGGER.exception("Could not refresh ewelink sensor %s because %s", self.device_id, ex)
