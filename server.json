@@ -15,11 +15,15 @@
   "devMode": true,
   "profile_version": "3.0.0",
   "developer": "James Paul",
+  "oauth": true,
   "customParams": {
-    "username": "jgpaul16@gmail.com",
+    "username": "",
     "password": "",
     "app_id": "",
-    "app_secret": ""
+    "app_secret": "",
+    "region": "us",
+    "rssi_perfect": -20,
+    "rssi_worst": -85
   },
   "credits": [
     {
