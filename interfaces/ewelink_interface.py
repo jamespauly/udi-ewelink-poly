@@ -1,4 +1,6 @@
 import json
+import random
+
 import requests
 from typing import Any
 
@@ -126,7 +128,7 @@ class EWeLinkInterface(OAuth):
             {
                 'Authorization': f'Sign {sign}',
                 'x-ck-appid': f'{self.app_id}',
-                'x-ck-nonce': Utilities.nonce(8)
+                'x-ck-nonce': self.nonce(8)
             }
 
         login_response = requests.post(self.base_url + '/user/login', headers=headers,
@@ -192,3 +194,6 @@ class EWeLinkInterface(OAuth):
             }
         )
         return response.json()
+
+    def nonce(self, length: int = 15) -> str:
+        return ''.join(str(random.randint(0, 9)) for _ in range(length))
