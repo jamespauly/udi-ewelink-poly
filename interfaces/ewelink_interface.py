@@ -119,7 +119,7 @@ class EWeLinkInterface(OAuth):
         LOGGER.debug(json.dumps(credentials))
 
         # Create auth header
-        sign = Utilities.hmac_sign(self.app_secret, credentials)
+        sign = Utilities.hmac_sign(bytes(self.app_secret, 'utf-8'), credentials)
 
         LOGGER.debug('Sign = ' + sign)
         headers = \
