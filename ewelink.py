@@ -11,7 +11,7 @@ MIT License
 
 import sys
 from udi_interface import LOGGER, Interface
-from lib.ewelink_interface import EWeLinkInterface
+from interfaces.ewelink_interface import EWeLinkInterface
 
 from nodes import EWeLinkController
 

@@ -1,5 +1,4 @@
 import udi_interface
-from lib.ewelink import EWeLink
 
 from nodes import EWeLinkNode
 
