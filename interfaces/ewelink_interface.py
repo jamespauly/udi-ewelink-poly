@@ -34,13 +34,13 @@ class EWeLinkInterface(OAuth):
         appIDValid = False
         appSecretValid = False
 
-        self.user = self.Parameters['username']
-        self.password = self.Parameters['password']
-        self.region = self.Parameters['region']
-        self.app_id = self.Parameters['app_id']
-        self.app_secret = self.Parameters['app_secret']
-        self.rssi_perfect = self.Parameters['rssi_perfect']
-        self.rssi_worst = self.Parameters['rssi_worst']
+        self.user = self.customParams['username']
+        self.password = self.customParams['password']
+        self.region = self.customParams['region']
+        self.app_id = self.customParams['app_id']
+        self.app_secret = self.customParams['app_secret']
+        self.rssi_perfect = self.customParams['rssi_perfect']
+        self.rssi_worst = self.customParams['rssi_worst']
 
         LOGGER.debug(self.user)
         LOGGER.debug(self.password)
@@ -91,7 +91,7 @@ class EWeLinkInterface(OAuth):
         else:
             LOGGER.error('app_secret is Blank')
 
-        self.Notices.clear()
+        self.poly.Notices.clear()
 
         if userValid and passwordValid and appIDValid and appSecretValid:
             self.configured = True
@@ -99,13 +99,13 @@ class EWeLinkInterface(OAuth):
             # self.query()
         else:
             if not userValid:
-                self.Notices['username'] = 'username must be configured.'
+                self.poly.Notices['username'] = 'username must be configured.'
             if not passwordValid:
-                self.Notices['password'] = 'password must be configured.'
+                self.poly.Notices['password'] = 'password must be configured.'
             if not appIDValid:
-                self.Notices['app_id'] = 'app_id must be configured.'
+                self.poly.Notices['app_id'] = 'app_id must be configured.'
             if not appSecretValid:
-                self.Notices['app_secret'] = 'app_secret must be configured.'
+                self.poly.Notices['app_secret'] = 'app_secret must be configured.'
 
     def login(self):
         credentials = \
