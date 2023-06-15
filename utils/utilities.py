@@ -1,6 +1,9 @@
 from datetime import datetime
-
-
+import hmac
+import base64
+import hashlib
+import json
+import random
 class Utilities:
     def isfloat(num):
         try:
@@ -35,3 +38,10 @@ class Utilities:
             percent = 0
 
         return percent
+    def hmac_sign(app_secret, credentials):
+        return base64.b64encode(
+            hmac.new(app_secret, msg=json.dumps(credentials).encode(), digestmod=hashlib.sha256).digest()
+        ).decode()
+
+    def nonce(self, length: int = 15) -> str:
+        return ''.join(str(random.randint(0, 9)) for _ in range(length))

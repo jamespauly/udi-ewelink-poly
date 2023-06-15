@@ -12,8 +12,6 @@ LOG_HANDLER = udi_interface.LOG_HANDLER
 from nodes import EWeLinkController
 from nodes import EWeLinkNode
 
-import logging
-
 if __name__ == "__main__":
     try:
         LOGGER.debug("Staring eWelink Interface")

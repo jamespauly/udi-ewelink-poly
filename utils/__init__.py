@@ -1,2 +1,1 @@
-from .Utilities import Utilities
-from .eWeLink import EWeLink
+from .utilities import Utilities

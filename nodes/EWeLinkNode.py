@@ -38,6 +38,7 @@ class EWeLinkNode(udi_interface.Node):
             LOGGER.debug('Device rssi value: ' + str(self.device['rssi']))
             LOGGER.debug('Device rssi percent: ' + str(int(rssi_percent)))
             self.setDriver('RFSS', int(rssi_percent), True)
+            self.setDriver('GV2', self.device['rssi'], True)
         except Exception as ex:
             LOGGER.exception("Could not refresh ewelink sensor %s because %s", self.device_id, ex)
             self.setDriver('GV1', 101, True)
@@ -67,7 +68,8 @@ class EWeLinkNode(udi_interface.Node):
     drivers = [
         {'driver': 'GV1', 'value': 0, 'uom': '78'},  # Status
         {'driver': 'WATERT', 'value': 0, 'uom': '17'},  # Water Temp
-        {'driver': 'RFSS', 'value': 0, 'uom': '51'} # RF Signal Percentage
+        {'driver': 'RFSS', 'value': 0, 'uom': '51'}, # RF Signal Percentage
+        {'driver': 'GV2', 'value': 0, 'uom': '131'}  # RF dBm signal
     ]
 
     commands = {
