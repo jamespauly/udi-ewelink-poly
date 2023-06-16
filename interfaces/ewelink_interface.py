@@ -192,14 +192,5 @@ class EWeLinkInterface(OAuth):
 
         return update_response
 
-    def get_gateway(self) -> dict[str, Any]:
-        response = requests.get(
-            f'https://{self.region}-dispa.coolkit.cc/dispatch/app',
-            headers={
-                'Authorization': f'Token {self.token}'
-            }
-        )
-        return response.json()
-
     def nonce(self, length: int = 15) -> str:
         return ''.join(str(random.randint(0, 9)) for _ in range(length))

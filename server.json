@@ -15,7 +15,7 @@
   "devMode": true,
   "profile_version": "3.0.0",
   "developer": "James Paul",
-  "oauth": true,
+  "oauth": false,
   "customParams": {
     "username": "",
     "password": "",

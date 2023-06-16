@@ -42,6 +42,3 @@ class Utilities:
         return base64.b64encode(
             hmac.new(app_secret, msg=json.dumps(credentials).encode(), digestmod=hashlib.sha256).digest()
         ).decode()
-
-    def nonce(self, length: int = 15) -> str:
-        return ''.join(str(random.randint(0, 9)) for _ in range(length))

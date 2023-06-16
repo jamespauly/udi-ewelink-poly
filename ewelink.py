@@ -30,6 +30,7 @@ def configDoneHandler():
     #     return
 
     ewelink_controller.discover()
+    LOGGER.debug('configDoneHandler Finished!')
 
 def pollHandler(pollType):
     if pollType == 'longPoll':
@@ -51,13 +52,9 @@ if __name__ == "__main__":
         polyglot = Interface([])
         polyglot.start({ 'version': '1.0.4', 'requestId': True })
 
-        # Show the help in PG3 UI under the node's Configuration option
         polyglot.setCustomParamsDoc()
+        polyglot.updateProfile()
 
-        # Update the profile files
-        polyglot.updateProfile()    # Use checkProfile() instead?
-
-        # Implements the API calls & Handles the oAuth authentication & token renewals
         ewelink_interface = EWeLinkInterface(polyglot)
 
         # Create the controller node
@@ -73,10 +70,7 @@ if __name__ == "__main__":
         polyglot.subscribe(polyglot.CONFIGDONE, configDoneHandler)
         # polyglot.subscribe(polyglot.ADDNODEDONE, addNodeDoneHandler)
 
-        # We can start receive events
         polyglot.ready()
-
-        # Just sit and wait for events
         polyglot.runForever()
 
     except (KeyboardInterrupt, SystemExit):
