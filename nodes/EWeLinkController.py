@@ -4,7 +4,6 @@ from nodes import EWeLinkNode
 
 # IF you want a different log format than the current default
 LOGGER = udi_interface.LOGGER
-Custom = udi_interface.Custom
 
 class EWeLinkController(udi_interface.Node):
     def __init__(self, polyglot, primary, address, name, ewelink_interface):
@@ -35,7 +34,7 @@ class EWeLinkController(udi_interface.Node):
                 LOGGER.info("Adding Node {}".format(device_id))
                 self.poly.addNode(
                     EWeLinkNode(self.poly, self.address, address_id, device['itemData']['name'],
-                                device_id, self.ewelink_interface, self.rssi_perfect, self.rssi_worst))
+                                device_id, self.ewelink_interface))
             else:
                 ewelink_node = self.poly.getNode(address_id)
                 ewelink_node.query()

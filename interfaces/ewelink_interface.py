@@ -109,6 +109,12 @@ class EWeLinkInterface(OAuth):
             if not appSecretValid:
                 self.poly.Notices['app_secret'] = 'app_secret must be configured.'
 
+    def get_rssi_perfect(self):
+        return self.rssi_perfect
+
+    def get_rssi_worst(self):
+        return self.rssi_worst
+
     def login(self):
         credentials = \
             {

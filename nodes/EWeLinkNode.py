@@ -5,21 +5,19 @@ from utils import Utilities
 LOGGER = udi_interface.LOGGER
 
 class EWeLinkNode(udi_interface.Node):
-    def __init__(self, polyglot, primary, address, name, device_id, ewelink, rssi_perfect, rssi_worst):
+    def __init__(self, polyglot, primary, address, name, device_id, ewelink_interface):
         super(EWeLinkNode, self).__init__(polyglot, primary, address, name)
         self.address = address
-        self.ewelink = ewelink
+        self.ewelink_interface = ewelink_interface
         self.device_id = device_id
-        self.rssi_perfect = rssi_perfect
-        self.rssi_worst = rssi_worst
 
         self.poly.subscribe(self.poly.START, self.start, address)
         self.poly.subscribe(self.poly.POLL, self.poll)
 
     def update(self):
         try:
-            self.ewelink.login()
-            self.device = self.ewelink.get_device(self.device_id)
+            self.ewelink_interface.login()
+            self.device = self.ewelink_interface.get_device(self.device_id)
             if self.device['currentTemperature'] == 'unavailable':
                 self.setDriver('GV1', 101, True)
                 LOGGER.exception("Could not communicate with sensor %s", self.device_id)
@@ -34,7 +32,7 @@ class EWeLinkNode(udi_interface.Node):
             else:
                 self.setDriver('GV1', 101, True)
 
-            rssi_percent = Utilities.dbm_to_percent(self.device['rssi'], self.rssi_perfect, self.rssi_worst)
+            rssi_percent = Utilities.dbm_to_percent(self.device['rssi'], self.ewelink_interface.get_rssi_perfect(), self.ewelink_interface.get_rssi_worst())
             LOGGER.debug('Device rssi value: ' + str(self.device['rssi']))
             LOGGER.debug('Device rssi percent: ' + str(int(rssi_percent)))
             self.setDriver('RFSS', int(rssi_percent), True)
@@ -44,13 +42,13 @@ class EWeLinkNode(udi_interface.Node):
             self.setDriver('GV1', 101, True)
 
     def cmd_don(self, cmd):
-        self.ewelink.login()
-        self.device = self.ewelink.udpate_device(self.device_id, 'on')
+        self.ewelink_interface.login()
+        self.device = self.ewelink_interface.udpate_device(self.device_id, 'on')
         self.query()
 
     def cmd_doff(self, cmd):
-        self.ewelink.login()
-        self.device = self.ewelink.udpate_device(self.device_id, 'off')
+        self.ewelink_interface.login()
+        self.device = self.ewelink_interface.udpate_device(self.device_id, 'off')
         self.query()
 
     def poll(self, pollType):
